@@ -1,8 +1,8 @@
-name: Trigger Deploy from External Repository
+name: Trigger Deploy in Quartz Repository
 
 on:
-  repository_dispatch:
-    types: [trigger-deploy]
+  push:
+    branches: ["main"]
 
 jobs:
   trigger-deploy:
@@ -12,6 +12,6 @@ jobs:
         uses: peter-evans/repository-dispatch@v3
         with:
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
-          repository: ${{ github.repository }}
+          repository: DRaichev/Erasmus-YE-Green-is-the-new-black-quartz
           event-type: trigger-deploy
-          client-payload: '{"ref": "main", "sha": "${{ github.sha }}"}' 
+          client-payload: '{"ref": "main", "sha": "${{ github.sha }}"}'
